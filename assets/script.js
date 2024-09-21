@@ -1,12 +1,23 @@
 import * as THREE from "three";
-import { MeshLine, MeshLineGeometry, MeshLineMaterial } from "./MeshLine/index.js";
+import {MeshLine} from "./MeshLine/MeshLine.js";
+import {MeshLineGeometry} from "./MeshLine/MeshLineGeometry.js";
+import {MeshLineMaterial} from "./MeshLine/MeshLineMaterial.js";
 import { UnrealBloomPass } from 'jsm/postprocessing/UnrealBloomPass.js';
 import { EffectComposer } from 'jsm/postprocessing/EffectComposer.js';
 import { RenderPass } from 'jsm/postprocessing/RenderPass.js';
+
+// Get the height and width of the browser window
 const w = window.innerWidth;
 const h = window.innerHeight;
+
+// Create an instance of a three.js scene
 const scene = new THREE.Scene();
-// Add a light to the scene
+
+// Add a light to the scene (fov, aspect, near, far ): https://threejs.org/docs/#api/en/cameras/PerspectiveCamera.fov
+// fov — how close or far from scence vertically.
+// aspect — aspect ratio of camera (1 is a square)
+// near — Camera frustum near plane.
+// far — Camera frustum far plane.
 const camera = new THREE.PerspectiveCamera(50, w / h, 0.11, 1000);
 
 let mouseDown = false;
@@ -40,25 +51,37 @@ camera.rotation.x = -50 * Math.PI / 180;
 camera.rotation.y = -25 * Math.PI / 180;
 camera.rotation.z = Math.PI / 180;
 
+// Create an instance of WebGLRenderer which renders the scene 
+// antialias is a computer graphics technique that smoothes jagged edges on curves and diagonal lines
 const renderer = new THREE.WebGLRenderer({ antialias: true });
+// set the size of the renderer to the size of the window
 renderer.setSize(w, h);
+// Create an element to house the renderer and add it to the end of the body
 document.body.appendChild(renderer.domElement);
 
-// Declare amplitude and frequency variables
+// Declare frequency, amplitude, and waveLength variables
 const frequency = 0.1;
 let amplitude = 1;
 let waveLength = 0.1;
 
 
+// A function to update mouse/finger coordinates and change amplitude 
+// and waveLength accoringly
 function moveEvent (e) {
+  // Create variables to hold the coordinates of the mouse
   let mouseY;
   let mouseX;
 
+
+  // If the users moves their finger over e
   if(e.type == 'touchmove'){
+    // update finger coordinates
     mouseY = e.touches[0].clientY;
     mouseX = e.touches[0].clientX;
   }
+  // Else if the mouse moves over e
   else if(e.type == 'mousemove'){
+    // update mouse coordinates
     mouseY = e.clientY;
     mouseX = e.clientX;
   }

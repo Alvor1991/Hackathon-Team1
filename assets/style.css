@@ -15,7 +15,6 @@ body {
   z-index: 3;
   top: 50px;
   left: 25px;
-  pointer-events: none;
   padding: 15px;
   background-color: rgba(255,255,255,0.4);
   backdrop-filter: blur(10px);
@@ -47,15 +46,18 @@ body {
     background: rgba(255,255,255,0);
     flex-grow: 1;
     flex-basis: 0;
-
+/* 
     &:hover {
       background: rgba(255,255,255,0.4);
       backdrop-filter: blur(10px);
-    }
+    } */
 
     p {
-      pointer-events: none;
       user-select: none;
     }
   }
+}
+
+.hover-effect {
+  background: black;
 }

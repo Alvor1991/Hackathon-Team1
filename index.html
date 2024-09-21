@@ -18,31 +18,90 @@
         }
       }
     </script>
-  <script src="assets/script.js" type="module"></script>
-  <script src="assets/theremin.js"></script>
+  <!-- <script src="assets/script.js" type="module"></script> -->
+  <!-- <script src="assets/theremin.js"></script> -->
+  <!-- <script src="assets/hover/hover.js"></script> -->
 </head>
 <body>
-  <section class="container-fluid">
+  <!-- <section class="container-fluid">
     <div class="row">
       <div class="col-12">
         <h1>Theremin</h1>
         <p>Click and drag to play the theremin</p>
       </div>
     </div>
-  </section>
+  </section> -->
   <section class="notes-divider">
-    <div><p>C</p></div>
-    <div><p>C#</p></div>
-    <div><p>D</p></div>
-    <div><p>D#</p></div>
-    <div><p>E</p></div>
-    <div><p>F</p></div>
-    <div><p>F#</p></div>
-    <div><p>G</p></div>
-    <div><p>G#</p></div>
-    <div><p>A</p></div>
-    <div><p>A#</p></div>
-    <div><p>B</p></div>
+    <div class="hover-effect"><p>C</p></div>
+    <div class="hover-effect"><p>C#</p></div>
+    <div class="hover-effect"><p>D</p></div>
+    <div class="hover-effect"><p>D#</p></div>
+    <div class="hover-effect"><p>E</p></div>
+    <div class="hover-effect"><p>F</p></div>
+    <div class="hover-effect"><p>F#</p></div>
+    <div class="hover-effect"><p>G</p></div>
+    <div class="hover-effect"><p>G#</p></div>
+    <div class="hover-effect"><p>A</p></div>
+    <div class="hover-effect"><p>A#</p></div>
+    <div class="hover-effect"><p>B</p></div>
   </section>
+
+  <script>
+// Select all elements with the class 'hover-effect'
+const hoverElements = document.querySelectorAll('.hover-effect');
+
+// Add event listeners for touch events
+hoverElements.forEach(element => {
+    // When the finger starts touching
+    element.addEventListener('touchstart', (e) => {
+        e.preventDefault();  // Prevent default touch behavior
+        const touch = e.touches[0];  // Get the first touch point
+
+        // Get the element's bounding box
+        const rect = element.getBoundingClientRect();
+        
+        // Check if the touch is within the element's bounds
+        if (touch.clientX >= rect.left && touch.clientX <= rect.right && 
+            touch.clientY >= rect.top && touch.clientY <= rect.bottom) {
+            element.style.background = 'rgba(255, 255, 255, 0.4)';
+            element.style.backdropFilter = 'blur(10px)';
+        }
+    });
+
+    // When the finger moves (to check if it moves outside the element)
+    element.addEventListener('touchmove', (e) => {
+        const touch = e.touches[0];  // Get the first touch point
+
+        // Get the element's bounding box
+        const rect = element.getBoundingClientRect();
+
+        // Check if the touch is still within the element's bounds
+        if (touch.clientX < rect.left || touch.clientX > rect.right ||
+            touch.clientY < rect.top || touch.clientY > rect.bottom) {
+            element.style.background = '';  // Reset to default
+            element.style.backdropFilter = '';  // Reset to default
+        }
+    });
+
+    // When the finger is lifted from the screen
+    element.addEventListener('touchend', () => {
+        element.style.background = '';  // Reset to default
+        element.style.backdropFilter = '';  // Reset to default
+    });
+
+    // Additionally, handle mouse hover for non-touch devices
+    element.addEventListener('mouseenter', () => {
+        element.style.background = 'rgba(255, 255, 255, 0.4)';
+        element.style.backdropFilter = 'blur(10px)';
+    });
+
+    element.addEventListener('mouseleave', () => {
+        element.style.background = '';  // Reset to default
+        element.style.backdropFilter = '';  // Reset to default
+    });
+});
+
+
+  </script>
 </body>
 </html>
