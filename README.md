@@ -141,15 +141,17 @@ We used GitHub pages for the deployment of this website
 
 ## Testing
 
-| # | Feature                                                                                                  | Pass Or Fail |
-|---|----------------------------------------------------------------------------------------------------------|--------------|
-| 1 | Website should display appropriately at all screen sizes                                                 | Pass         |
-| 2 | A mousedown event should generate volume and pitch dependent on cursor xy coordinates                    | Pass         |
-| 3 | A mouseup event should stop all noise after a short delay to fadeout the volume                          | Pass         |
-| 4 | A mousemove event should shift the pitch and volume appropriately dependent on the cursor xy coordinates | Pass         |
-| 5 | A touchstart event should generate volume and pitch dependent on touch event xy coordinates              | Pass         |
-| 6 | A touchstop event should shift volume and pitch dependent on the touchmove event xy coordinates          | Pass         |
-| 7 | A touchstop event should stop the noise after a short delay to fadeout the colume                        | Pass         |
+| # | Feature                                                                                                   | Pass Or Fail |
+|---|-----------------------------------------------------------------------------------------------------------|--------------|
+| 1 | Website should display appropriately at all screen sizes                                                  | Pass         |
+| 2 | A mousedown event should generate volume and pitch dependent on cursor xy coordinates                     | Pass         |
+| 3 | A mouseup event should stop all noise after a short delay to fadeout the volume                           | Pass         |
+| 4 | A mousemove event should shift the pitch and volume appropriately dependent on the cursor xy coordinates  | Pass         |
+| 5 | A touchstart event should generate volume and pitch dependent on touch event xy coordinates               | Pass         |
+| 6 | A touchstop event should shift volume and pitch dependent on the touchmove event xy coordinates           | Pass         |
+| 7 | A touchstop event should stop the noise after a short delay to fadeout the colume                         | Pass         |
+| 8 | Mousemove events should manipulate the visual background element only while the mousedown event is active | Pass         |
+| 9 | Touchmove events should manipulate the visual background element only while the toucdhown event is active | Pass         |
 
 ## Known Bugs
 
